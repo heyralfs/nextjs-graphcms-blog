@@ -56,14 +56,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	const { blogPosts } = data;
 	const paths = blogPosts.map((post: { slug: string }) => ({
-		params: { slug: [post.slug] },
+		params: { slug: post.slug },
 	}));
 
 	return { paths, fallback: false };
 };
 
 interface IParams extends ParsedUrlQuery {
-	slug: string[];
+	slug: string;
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			}
 		`,
 		variables: {
-			slug: slug[0],
+			slug,
 		},
 	});
 
