@@ -3,12 +3,15 @@ import { Box, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
+import { PostContent } from "../../components/PostContent";
 import { apolloClient } from "../../services/apolloClient";
 
 type Post = {
 	title: string;
 	date: string;
-	content: any; // FIXME:
+	content: {
+		html: string;
+	};
 };
 
 interface PostPageProps {
@@ -19,10 +22,10 @@ export default function PostPage({ post }: PostPageProps) {
 	return (
 		<Box w="100%" maxW={720} py="8" m="auto">
 			<Text
-				fontSize="4xl"
+				fontSize="5xl"
 				color="yellow.400"
 				fontWeight="bold"
-				lineHeight="10"
+				lineHeight="1"
 			>
 				{post.title}
 			</Text>
@@ -35,10 +38,7 @@ export default function PostPage({ post }: PostPageProps) {
 				})}
 			</Text>
 
-			<Box
-				my="8"
-				dangerouslySetInnerHTML={{ __html: post.content.html }}
-			/>
+			<PostContent postHtml={post.content.html} />
 		</Box>
 	);
 }

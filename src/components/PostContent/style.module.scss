@@ -1,0 +1,74 @@
+/** 
+* Styled with Chakra UI variables
+*/
+
+.post-content {
+	width: 100%;
+
+	/* headings */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: var(--chakra-fontWeights-bold);
+		margin-top: var(--chakra-space-4);
+		margin-bottom: var(--chakra-space-4);
+	}
+	h1 {
+		font-size: var(--chakra-fontSizes-4xl);
+	}
+	h2 {
+		font-size: var(--chakra-fontSizes-3xl);
+	}
+	h3 {
+		font-size: var(--chakra-fontSizes-2xl);
+	}
+	h4 {
+		font-size: var(--chakra-fontSizes-xl);
+	}
+
+	/* paragraphs and stuff */
+	p,
+	blockquote,
+	ul li,
+	a {
+		font-size: var(--chakra-fontSizes-lg);
+		line-height: var(--chakra-lineHeights-taller);
+		text-align: justify;
+	}
+
+	a {
+		color: var(--chakra-colors-yellow-400);
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	ul,
+	ol,
+	p {
+		margin-top: var(--chakra-space-6);
+		margin-bottom: var(--chakra-space-6);
+	}
+
+	li {
+		margin-top: var(--chakra-space-4);
+		margin-bottom: var(--chakra-space-4);
+	}
+
+	blockquote {
+		font-style: italic;
+		margin: var(--chakra-space-6) var(--chakra-space-8);
+	}
+
+	strong {
+		font-weight: var(--chakra-fontWeights-bold);
+	}
+
+	pre {
+		background-color: var(--chakra-colors-gray-700);
+		padding: var(--chakra-space-4);
+	}
+}
