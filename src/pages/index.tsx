@@ -22,8 +22,6 @@ interface HomeProps {
 }
 
 export default function Home({ posts }: HomeProps) {
-	console.log(posts);
-
 	return (
 		<Flex
 			w="100%"

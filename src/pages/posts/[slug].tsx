@@ -2,16 +2,14 @@ import { gql } from "@apollo/client";
 import { Box, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import React from "react";
-import { PostContent } from "../../components/PostContent";
 import { apolloClient } from "../../services/apolloClient";
+
+import { PostContent } from "../../components/PostContent";
 
 type Post = {
 	title: string;
 	date: string;
-	content: {
-		html: string;
-	};
+	markdown: string;
 };
 
 interface PostPageProps {
@@ -23,7 +21,7 @@ export default function PostPage({ post }: PostPageProps) {
 		<Box w="100%" maxW={720} py="8" m="auto">
 			<Text
 				fontSize="5xl"
-				color="yellow.400"
+				color="cyan.300"
 				fontWeight="bold"
 				lineHeight="1"
 			>
@@ -31,14 +29,14 @@ export default function PostPage({ post }: PostPageProps) {
 			</Text>
 
 			<Text color="gray.400" mt="4">
-				{new Date(post.date).toLocaleString("pt-BR", {
+				{new Date(post.date).toLocaleString("en-US", {
 					day: "2-digit",
 					month: "long",
 					year: "numeric",
 				})}
 			</Text>
 
-			<PostContent postHtml={post.content.html} />
+			<PostContent postMarkdown={post.markdown} />
 		</Box>
 	);
 }
@@ -75,9 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 				blogPosts(where: { slug: $slug }) {
 					title
 					date
-					content {
-						html
-					}
+					markdown
 				}
 			}
 		`,

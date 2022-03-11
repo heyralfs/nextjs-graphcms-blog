@@ -40,7 +40,7 @@
 	}
 
 	a {
-		color: var(--chakra-colors-yellow-400);
+		color: var(--chakra-colors-cyan-300);
 		&:hover {
 			text-decoration: underline;
 		}
@@ -60,15 +60,22 @@
 
 	blockquote {
 		font-style: italic;
-		margin: var(--chakra-space-6) var(--chakra-space-8);
+		margin: var(--chakra-space-6) 0;
+		padding: 0 var(--chakra-space-6);
+		border-left: 5px solid var(--chakra-colors-cyan-300);
 	}
 
 	strong {
 		font-weight: var(--chakra-fontWeights-bold);
 	}
 
-	pre {
+	code {
 		background-color: var(--chakra-colors-gray-700);
-		padding: var(--chakra-space-4);
+		padding: var(--chakra-space-1);
+	}
+
+	pre code {
+		padding: var(--chakra-space-3);
+		border-radius: var(--chakra-space-2);
 	}
 }
