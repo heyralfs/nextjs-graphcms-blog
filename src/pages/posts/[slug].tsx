@@ -1,10 +1,21 @@
-import { gql } from "@apollo/client";
-import { Box, Text } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { ReactNode, useEffect } from "react";
+import { gql } from "@apollo/client";
+import { Box, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { ParsedUrlQuery } from "querystring";
+import { highlightAll } from "highlight.js";
+
 import { apolloClient } from "../../services/apolloClient";
 
-import { PostContent } from "../../components/PostContent";
+// import "highlight.js/styles/codepen-embed.css";
+// import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/styles/tomorrow-night-bright.css";
+import ReactMarkdown from "react-markdown";
+import { CodeViewer } from "../../components/CodeViewer";
+
+type CodeElement = {
+	props: { className: string; children: string };
+};
 
 type Post = {
 	title: string;
@@ -17,11 +28,25 @@ interface PostPageProps {
 }
 
 export default function PostPage({ post }: PostPageProps) {
+	const { colorMode } = useColorMode();
+
+	useEffect(() => {
+		highlightAll();
+	}, [colorMode]);
+
 	return (
-		<Box w="100%" maxW={720} py="8" m="auto">
+		<Box
+			w="100%"
+			maxW={720}
+			py="8"
+			px="4"
+			m="auto"
+			className="post-content"
+		>
 			<Text
+				as="h1"
 				fontSize="5xl"
-				color="cyan.300"
+				// color={titleColor}
 				fontWeight="bold"
 				lineHeight="1"
 			>
@@ -36,7 +61,16 @@ export default function PostPage({ post }: PostPageProps) {
 				})}
 			</Text>
 
-			<PostContent postMarkdown={post.markdown} />
+			<ReactMarkdown
+				children={post.markdown}
+				components={{
+					pre: ({ children }) => (
+						<CodeViewer
+							code={children[0] as ReactNode & CodeElement}
+						/>
+					),
+				}}
+			/>
 		</Box>
 	);
 }
