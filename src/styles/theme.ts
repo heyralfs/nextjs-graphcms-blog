@@ -13,6 +13,9 @@ export const theme = extendTheme({
 
 	styles: {
 		global: (props: Dict<any> | StyleFunctionProps) => ({
+			h1: {
+				color: mode("cyan.700", "cyan.300")(props),
+			},
 			/**
 			 * Post content styling
 			 */
