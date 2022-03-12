@@ -25,7 +25,7 @@ export default function Home({ posts }: HomeProps) {
 	return (
 		<Flex
 			w="100%"
-			h="100vh"
+			h={"calc(100vh - 64px)"}
 			align="center"
 			justify="space-evenly"
 			direction="column"
