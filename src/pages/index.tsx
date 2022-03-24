@@ -25,10 +25,15 @@ export default function Home({ posts }: HomeProps) {
 			w="100%"
 			h={"calc(100vh - 64px)"}
 			align="center"
-			justify="space-evenly"
+			justify="center"
 			direction="column"
 		>
-			<Text fontSize="2xl">Hello world</Text>
+			<Text fontSize="2xl" mb={4}>
+				Hello world
+			</Text>
+			<Link href="/blog" passHref>
+				<ChakraLink>Go to blog</ChakraLink>
+			</Link>
 		</Flex>
 	);
 }
